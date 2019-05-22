@@ -12,7 +12,7 @@
  */
 
 var Promise = typeof Promise !== 'undefined' ? Promise : require('bluebird');
-var CAS         = require('xcas'),
+var CAS         = require('@byu-oit/xcas'),
     cheerio     = require('cheerio'),
     request     = require('request'),
     https       = require('https');
@@ -114,6 +114,7 @@ function _getCASFieldsFromHTML(html) {
   $('textarea, input').each(function(){
     fields[$(this).attr('name')] = $(this).val();
   });
+  fields['_eventId'] = 'submit'
   return fields;
 };
 
@@ -146,13 +147,16 @@ if(process.env.INSECURE) {
 
       function _handleHTML(html) {
         var fields = _parseHTML(html);
+        console.log(fields)
         var req = r.post(url, {form: fields}, function(error, response, body){
+          // console.log(response)
           if(error) {
             _handleCASError(error);
             return;
           }
           if(response.headers.location === undefined) {
             // there might be a link to the ticket instead of a redirect. try that
+            // console.log(body)
             var $ = cheerio.load(body);
             _extractTicket($('a').attr('href'));
           }
