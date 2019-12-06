@@ -81,6 +81,7 @@ function _parseAttributes(attributes) {
   var SPLIT_ARRAY = ['memberOf'];
 
   var new_attrs = {};
+  attributes = attributes || {};
   Object.keys(attributes).forEach(function(key) {
     if(BOOLS.indexOf(key) !== -1) {
       new_attrs[key] = (attributes[key][0] == 'true');
