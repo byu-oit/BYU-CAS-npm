@@ -28,12 +28,12 @@
   "homepage": "https://github.com/byu-oit/byu-cas",
   "dependencies": {
     "@byu-oit/xcas": "^1.0.1",
-    "bluebird": "^3.5.4",
+    "bluebird": "^3.7.2",
     "cheerio": "^1.0.0-rc.3",
-    "request": "^2.48.0"
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^6.1.4"
+    "mocha": "^6.2.3"
   }
 }
